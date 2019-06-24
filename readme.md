@@ -8,4 +8,4 @@ _Lyricanto_ uses lyrics.ovh API to get music lyrics of a song.
 * [Lyrics.ovh](https://lyricsovh.docs.apiary.io/) - Song Lyrics APIs
 
 ## License
-The project is licensed by the MIT License - see [LICENSE.md](LICENSE) for more details.
+The project does not need a license :)
