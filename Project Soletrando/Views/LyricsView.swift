@@ -29,9 +29,9 @@ struct LyricsView : View {
             
             ScrollView {
                 Text(lyricsViewModel.lyrics)
+                    .frame(maxWidth: 300)
                     .lineLimit(0)
                     .padding()
-                
             }
         }
         

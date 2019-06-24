@@ -26,12 +26,16 @@ final class LyricsViewModel: ViewModel {
     }
 
     func requestLyrics(from music: Music) {
+        var notLyrics = true
         LyricsService.client.requestLyrics(from: music.artist, and: music.musicName) { lyrics in
             if let lyrics = lyrics {
-                self.lyrics = LyricsAPIParser().string(from: lyrics)
-            } else {
-                self.lyrics = "No lyrics found"
+                let lyricsParsed = LyricsAPIParser().string(from: lyrics)
+                if !lyricsParsed.hasPrefix("Unfortunately, we are not") {
+                    self.lyrics = LyricsAPIParser().string(from: lyrics)
+                    notLyrics = false
+                }
             }
+            if notLyrics { self.lyrics = "No lyrics found" }
         }
     }
 
