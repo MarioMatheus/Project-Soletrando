@@ -25,7 +25,9 @@ struct MusicList : View {
                 Spacer()
             } else {
                 List(musics) { music in
-                    PresentationButton(MusicCell(music: music), destination: LyricsView(music: music))
+                    NavigationLink(destination: LyricsView(music: music)) {
+                        MusicCell(music: music)
+                    }
                 }
             }
         }

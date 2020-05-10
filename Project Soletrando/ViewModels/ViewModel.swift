@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 
-class ViewModel: BindableObject {
+class ViewModel: ObservableObject {
     
     let didChange = PassthroughSubject<ViewModel, Never>()
     

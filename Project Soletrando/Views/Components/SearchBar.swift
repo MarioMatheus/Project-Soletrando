@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SearchBar: View {
     @Binding var text: String
-    @State var placeholder: Text
+    @State var placeholder: String = ""
     @State var action: () -> Void
     
     @State private var searchButtonIsPresent = false
@@ -13,17 +13,17 @@ struct SearchBar: View {
         ZStack {
             Color.white
             HStack {
-                TextField($text,
-                          placeholder: placeholder.color(Color.secondary),
+                TextField(text,
+                          text: $placeholder,
                           onEditingChanged: { if $0 { self.keyboard.returnKeyType = .search } },
                           onCommit: action)
                     .padding([.leading, .trailing], 8)
                     .frame(height: 38)
                     .background(Color.black.opacity(0.2))
                     .cornerRadius(8)
-                    .tapAction {
+                    .onTapGesture {
                         withAnimation { self.searchButtonIsPresent = true }
-                    }
+                }
                 if searchButtonIsPresent {
                     Button(action: {
                         withAnimation { self.searchButtonIsPresent = false }

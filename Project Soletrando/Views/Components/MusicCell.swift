@@ -16,7 +16,7 @@ struct MusicCell : View {
             Text(music.musicName)
             Text(music.artist)
                 .font(.subheadline)
-                .color(.secondary)
+                .foregroundColor(.secondary)
             }
     }
 }

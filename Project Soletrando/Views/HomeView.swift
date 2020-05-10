@@ -10,15 +10,15 @@ import SwiftUI
 
 struct HomeView : View {
     
-    @ObjectBinding var homeViewModel = HomeViewModel()
-    
+    @ObservedObject var homeViewModel = HomeViewModel()
+    @State private var placeHolder: String = ""
     var body: some View {
         
         NavigationView {
         
             VStack(alignment: .center) {
                 
-                SearchBar(text: $homeViewModel.searchText, placeholder: Text("🔍 Yellow coldplay")) {
+                SearchBar(text: $homeViewModel.searchText, placeholder: placeHolder) {
                     self.homeViewModel.searchMusics()
                 }
                 
@@ -36,7 +36,7 @@ struct HomeView : View {
                 .navigationBarTitle(Text("Lyricanto"))
             }
             
-        }
+        }.background(Color.init(.white)).foregroundColor(.white)
         
     }
     

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct LyricsView : View {
     
-    @ObjectBinding var lyricsViewModel = LyricsViewModel()
+    @ObservedObject var lyricsViewModel = LyricsViewModel()
 
     init(music: Music) {
         lyricsViewModel.music = music
@@ -23,7 +23,7 @@ struct LyricsView : View {
                     .font(.title)
                 Text(lyricsViewModel.music.artist)
                     .font(.subheadline)
-                    .color(.secondary)
+                    .foregroundColor(.secondary)
             }
             .padding(10)
             
