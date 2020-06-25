@@ -9,13 +9,13 @@
 import SwiftUI
 import Combine
 
-final class HomeViewModel: ViewModel {
+class HomeViewModel: ViewModel {
     
-    var isSearching = false {
-        didSet {
-            didChange.send(self)
-        }
-    }
+    @Published var isSearching = false // {
+//        didSet {
+//            didChange.send(self)
+//        }
+//    }
     
     var searchText: String = "" {
         didSet {
@@ -23,7 +23,7 @@ final class HomeViewModel: ViewModel {
         }
     }
     
-    var suggestedMusics: [Music] = [] {
+    @Published var suggestedMusics: [Music] = [] {
         didSet {
             didChange.send(self)
         }
@@ -31,12 +31,12 @@ final class HomeViewModel: ViewModel {
     
     func searchMusics() {
         if searchText.isEmpty { return }
-        isSearching = true
+        isSearching.toggle()
         LyricsService.client.requestSuggestLyrics(by: searchText) { suggestedMusics in
-            self.isSearching = false
             if let suggestedMusics = suggestedMusics {
                 self.suggestedMusics = LyricsAPIParser().musics(from: suggestedMusics)
             }
+//            self.isSearching = false
         }
     }
     

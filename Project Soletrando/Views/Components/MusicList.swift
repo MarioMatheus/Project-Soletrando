@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MusicList : View {
     
-    @State var musics: [Music]
+    @Binding var musics: [Music]
     
     var body: some View {
         ZStack {
@@ -32,18 +32,19 @@ struct MusicList : View {
             }
         }
     }
+    
 }
 
-#if DEBUG
-struct MusicList_Previews : PreviewProvider {
-    static var previews: some View {
-        Group {
-            MusicList(musics: [])
-            MusicList(musics: [
-                Music(id: 0, musicName: "Yellow", artist: "Coldplay"),
-                Music(id: 0, musicName: "Hymn for the weekend", artist: "Coldplay")
-            ])
-        }
-    }
-}
-#endif
+//#if DEBUG
+//struct MusicList_Previews : PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            MusicList(musics: [])
+//            MusicList(musics: [
+//                Music(id: 0, musicName: "Yellow", artist: "Coldplay"),
+//                Music(id: 0, musicName: "Hymn for the weekend", artist: "Coldplay")
+//            ])
+//        }
+//    }
+//}
+//#endif

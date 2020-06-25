@@ -8,36 +8,43 @@
 
 import SwiftUI
 
+struct MusicLoadingView: View {
+    
+    @State var isLoading: Bool
+    
+    var body: some View {
+        if isLoading {
+            return AnyView(Text("CARREGANDO").foregroundColor(.red))
+        } else {
+            return AnyView(Text("NADA").foregroundColor(.red))
+            // MusicList(musics: homeViewModel.suggestedMusics)
+        }
+    }
+}
+
 struct HomeView : View {
     
     @ObservedObject var homeViewModel = HomeViewModel()
     @State private var placeHolder: String = ""
+    
     var body: some View {
-        
+
         NavigationView {
-        
+
             VStack(alignment: .center) {
-                
+
                 SearchBar(text: $homeViewModel.searchText, placeholder: placeHolder) {
                     self.homeViewModel.searchMusics()
                 }
-                
-                ZStack {
-                    if homeViewModel.isSearching {
-                        Spacer()
-                        Spinner()
-                        Spacer()
-                    } else {
-                        MusicList(musics: homeViewModel.suggestedMusics)
-                    }
-                    
-                }
-                
-                .navigationBarTitle(Text("Lyricanto"))
+
+                MusicLoadingView(isLoading: homeViewModel.isSearching)
+
+//                .navigationBarTitle(Text("Lyricanto"))
             }
-            
-        }.background(Color.init(.white)).foregroundColor(.white)
-        
+
+        }
+        .background(Color(.white))
+        .foregroundColor(.white)
     }
     
 }

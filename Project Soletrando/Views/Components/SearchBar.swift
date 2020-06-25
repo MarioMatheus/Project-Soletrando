@@ -13,8 +13,8 @@ struct SearchBar: View {
         ZStack {
             Color.white
             HStack {
-                TextField(text,
-                          text: $placeholder,
+                TextField(placeholder,
+                          text: $text,
                           onEditingChanged: { if $0 { self.keyboard.returnKeyType = .search } },
                           onCommit: action)
                     .padding([.leading, .trailing], 8)
